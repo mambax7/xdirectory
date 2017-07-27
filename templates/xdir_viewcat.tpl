@@ -1,4 +1,4 @@
-<br /><br />
+<br><br>
 
 <table width="97%" cellspacing="0" cellpadding="0" border="0" align="center">
   <tr>
@@ -25,7 +25,7 @@
       <table width="90%">
         <tr>
           <{foreach item=subcat from=$subcategories}>
-            <td align="left"><b><a href="viewcat.php?cid=<{$subcat.id}>"><{$subcat.title}></a></b> (<{$subcat.totallinks}>)<br /><!-- <font class="subcategories"><{$subcat.infercategories}></font> --></td>
+            <td align="left"><b><a href="viewcat.php?cid=<{$subcat.id}>"><{$subcat.title}></a></b> (<{$subcat.totallinks}>)<br><!-- <font class="subcategories"><{$subcat.infercategories}></font> --></td>
             <{if $subcat.count is div by 4}>
             </tr><tr>
             <{/if}>
@@ -53,16 +53,16 @@
     <{section name=i loop=$links}>
   <tr>
     <td width="100%" align="center" valign="top" bgcolor="#ffffcc">
-      <{include file="db:xdir_premiumlink.html" link=$links[i]}>
+      <{include file="db:xdir_premiumlink.tpl" link=$links[i]}>
     </td>
   </tr>
     <{/section}>
     <!-- End link loop -->
 </table>
 
-	  <br /><br />
+	  <br><br>
 <div style="text-align:center;"><{$page_nav}></div>
-<br />
+<br>
 
 <table width="97%" cellspacing="0" cellpadding="6" border="0" align="center">
   <tr>
@@ -78,23 +78,23 @@
     <td width="100%" align="center" valign="top">
     <!-- Start link loop -->
     <{section name=i loop=$links}>
-      <{include file="db:xdir_link.html" link=$links[i]}>
+      <{include file="db:xdir_link.tpl" link=$links[i]}>
     <{/section}>
     <!-- End link loop -->
     </td>
   </tr>
 </table>
 
-<br />
+<br>
 
       <{if $show_nav == true}>
-      <div align="center"><{$lang_sortby}>  <{$lang_title}> (<a href="viewcat.php?cid=<{$category_id}>&orderby=titleA"><img src="images/up.gif" border="0" align="middle" alt="<{$lang_titleatoz}>" /></a><a href="viewcat.php?cid=<{$category_id}>&orderby=titleD"><img src="images/down.gif" border="0" align="middle" alt="<{$lang_titleztoa}>" /></a>)<{$lang_date}> (<a href="viewcat.php?cid=<{$category_id}>&orderby=dateA"><img src="images/up.gif" border="0" align="middle" alt="<{$lang_dateold}>" /></a><a href="viewcat.php?cid=<{$category_id}>&orderby=dateD"><img src="images/down.gif" border="0" align="middle" alt="<{$lang_datenew}>" /></a>)<{$lang_rating}> (<a href="viewcat.php?cid=<{$category_id}>&orderby=ratingA"><img src="images/up.gif" border="0" align="middle" alt="<{$lang_ratinglow}>" /></a><a href="viewcat.php?cid=<{$category_id}>&orderby=ratingD"><img src="images/down.gif" border="0" align="middle" alt="<{$lang_ratinghigh}>" /></a>)<{$lang_popularity}> (<a href="viewcat.php?cid=<{$category_id}>&orderby=hitsA"><img src="images/up.gif" border="0" align="middle" alt="<{$lang_popularityleast}>" /></a><a href="viewcat.php?cid=<{$category_id}>&orderby=hitsD"><img src="images/down.gif" border="0" align="middle" alt="<{$lang_popularitymost}>" /></a>)
-      <br /><b><{$lang_cursortedby}></b>
+      <div align="center"><{$lang_sortby}>  <{$lang_title}> (<a href="viewcat.php?cid=<{$category_id}>&orderby=titleA"><img src="images/up.gif" border="0" align="middle" alt="<{$lang_titleatoz}>"></a><a href="viewcat.php?cid=<{$category_id}>&orderby=titleD"><img src="images/down.gif" border="0" align="middle" alt="<{$lang_titleztoa}>"></a>)<{$lang_date}> (<a href="viewcat.php?cid=<{$category_id}>&orderby=dateA"><img src="images/up.gif" border="0" align="middle" alt="<{$lang_dateold}>"></a><a href="viewcat.php?cid=<{$category_id}>&orderby=dateD"><img src="images/down.gif" border="0" align="middle" alt="<{$lang_datenew}>"></a>)<{$lang_rating}> (<a href="viewcat.php?cid=<{$category_id}>&orderby=ratingA"><img src="images/up.gif" border="0" align="middle" alt="<{$lang_ratinglow}>"></a><a href="viewcat.php?cid=<{$category_id}>&orderby=ratingD"><img src="images/down.gif" border="0" align="middle" alt="<{$lang_ratinghigh}>"></a>)<{$lang_popularity}> (<a href="viewcat.php?cid=<{$category_id}>&orderby=hitsA"><img src="images/up.gif" border="0" align="middle" alt="<{$lang_popularityleast}>"></a><a href="viewcat.php?cid=<{$category_id}>&orderby=hitsD"><img src="images/down.gif" border="0" align="middle" alt="<{$lang_popularitymost}>"></a>)
+      <br><b><{$lang_cursortedby}></b>
       <hr / width="97%">
       </div>
       <{/if}>
 
-<br /><br />
+<br><br>
 
 <div style="text-align:center;"><{$page_nav}></div>
 
@@ -104,4 +104,4 @@
   </tr>
 </table>
 <{/if}>
-<{include file='db:system_notification_select.html'}>
+<{include file='db:system_notification_select.tpl'}>

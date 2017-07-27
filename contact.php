@@ -1,5 +1,5 @@
-<?
-// 
+<?php
+//
 // ------------------------------------------------------------------------- //
 //               E-Xoops: Content Management for the Masses                  //
 //                       < http://www.e-xoops.com >                          //
@@ -10,57 +10,53 @@
 // ------------------------------------------------------------------------- //
 
 if ($submit) {
-include("header.php");
-global $xoopsConfig, $xoopsDB, $myts, $meta;
+    include __DIR__ . '/header.php';
+    global $xoopsConfig, $xoopsDB, $myts, $meta;
 
- $result = $xoopsDB->query("SELECT title, email FROM ".$xoopsDB->prefix("xdir_links")." WHERE lid = '$id'");
-while(list($title, $email) = $xoopsDB->fetchRow($result)) {
+    $result = $xoopsDB->query('SELECT title, email FROM ' . $xoopsDB->prefix('xdir_links') . " WHERE lid = '$id'");
+    while (list($title, $email) = $xoopsDB->fetchRow($result)) {
+        if ($tele) {
+            $teles = "Phone: $tele";
+        } else {
+            $teles = '';
+        }
 
+        $message .= "Message from $namep\ne-Mail: $post " . $meta['title'] . "\n$teles\n\n";
+        $message .= "$namep wrote:\n";
+        $message .= "$messtext\n\n\n";
+        $message .= "This message was sent by $namep using the e-Mail form on {X_SITENAME}.  \n\n\n";
 
-if ($tele) {
-$teles = "Phone: $tele";
-}  else {
-$teles = "";
-}
+        $subject = 'Email Submission from {X_SITENAME}';
+        $mail    =& getMailer();
+        $mail->useMail();
+        $mail->setFromEmail($post);
+        $mail->setToEmails($email);
+        $mail->setSubject($subject);
+        $mail->setBody($message);
+        $mail->send();
+        echo $mail->getErrors();
 
-$message .= "Message from $namep\ne-Mail: $post ".$meta['title']."\n$teles\n\n";
-$message .= "$namep wrote:\n";
-$message .= "$messtext\n\n\n";
-$message .= "This message was sent by $namep using the e-Mail form on {X_SITENAME}.  \n\n\n";
+        $from    = 'From: info@changeme.com';
+        $to      = $email;
+        $subject = $subject;
+        $body    = $message;
 
-	$subject = "Email Submission from {X_SITENAME}";
-	$mail =& getMailer();
-	$mail->useMail();
-	$mail->setFromEmail($post);
-	$mail->setToEmails($email);
-	$mail->setSubject($subject);
-	$mail->setBody($message);
-	$mail->send();
-	echo $mail->getErrors();
-
-	$from = "From: info@changeme.com"; 
-	$to = $email; 
-	$subject = $subject; 
-	$body = $message; 
-
-if(mail($to,$subject,$body,$from)) echo ""; 
-else echo ""; 
-
-
-}
-redirect_header("index.php",1,_CLA_MESSEND);
-exit();
-
+        if (mail($to, $subject, $body, $from)) {
+            echo '';
+        } else {
+            echo '';
+        }
+    }
+    redirect_header('index.php', 1, _CLA_MESSEND);
+    exit();
 } else {
+    include __DIR__ . '/header.php';
+    include XOOPS_ROOT_PATH . '/header.php';
+    OpenTable();
 
-include("header.php");
-include(XOOPS_ROOT_PATH."/header.php");
-OpenTable();
-
- $result = $xoopsDB->query("SELECT title, email FROM ".$xoopsDB->prefix("xdir_links")." WHERE lid = '$lid'");
-while(list($title, $email) = $xoopsDB->fetchRow($result)) {
-
-echo "<script>
+    $result = $xoopsDB->query('SELECT title, email FROM ' . $xoopsDB->prefix('xdir_links') . " WHERE lid = '$lid'");
+    while (list($title, $email) = $xoopsDB->fetchRow($result)) {
+        echo "<script>
           function verify() {
                 var msg = \"Errors were found during the validation of this form!\\n__________________________________________________\\n\\n\";
                 var errors = \"FALSE\";
@@ -90,19 +86,18 @@ echo "<script>
           }
           </script>";
 
+        echo '<B></B><BR><BR>';
+        echo "Send a message to:<br><font size=4>$title</font><BR>";
+        echo "<form onSubmit=\"return verify();\" method=\"post\" action=\"contact.php\" NAME=\"Cont\">";
+        echo "<INPUT TYPE=\"hidden\" NAME=\"id\" VALUE=\"$lid\">";
+        echo "<INPUT TYPE=\"hidden\" NAME=\"submit\" VALUE=\"1\">";
 
-echo "<B></B><BR><BR>";
-echo "Send a message to:<br><font size=4>$title</font><BR>";
-echo "<form onSubmit=\"return verify();\" method=\"post\" action=\"contact.php\" NAME=\"Cont\">";
-echo "<INPUT TYPE=\"hidden\" NAME=\"id\" VALUE=\"$lid\">";
-echo "<INPUT TYPE=\"hidden\" NAME=\"submit\" VALUE=\"1\">";
+        if ($xoopsUser) {
+            $idd  = $xoopsUser->getVar('name', 'E');
+            $idde = $xoopsUser->getVar('email', 'E');
+        }
 
-    if($xoopsUser) {
-	$idd =$xoopsUser->getVar("name", "E");
-	$idde =$xoopsUser->getVar("email", "E");
-	}
-
-echo "<TABLE WIDTH=100% BORDER=0 CELLSPACING=1>
+        echo "<TABLE WIDTH=100% BORDER=0 CELLSPACING=1>
     <TR>
       <TD>Your Name: </TD>
       <TD><input type=\"text\" name=\"namep\" size=\"42\" value=\"$idd\"></TD>
@@ -123,8 +118,7 @@ echo "<TABLE WIDTH=100% BORDER=0 CELLSPACING=1>
       <p><INPUT TYPE=\"submit\" VALUE=\"Send\">
 </form>";
 
-CloseTable();
-include(XOOPS_ROOT_PATH."/footer.php");
+        CloseTable();
+        include XOOPS_ROOT_PATH . '/footer.php';
+    }
 }
-}
-?>

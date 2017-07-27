@@ -1,4 +1,4 @@
-<br />
+<br>
 
 <table border="0" width="100%">
 	<tr>
@@ -7,7 +7,7 @@
 		</td>
 	</tr>
 </table>
-<hr />
+<hr>
 <table width="100%" cellspacing="1" cellpadding="4" border="0">
   <tr>
     <td>
@@ -31,7 +31,7 @@
               </div>
             </td>
             <td class="even"> 
-              <input type="text" name="title" size="50" maxlength="100" />
+              <input type="text" name="title" size="50" maxlength="100">
             </td>
           </tr>
           <tr> 
@@ -41,7 +41,7 @@
               </div>
             </td>
             <td class="odd"> 
-              <input type="text" name="address" size="50" maxlength="100" />
+              <input type="text" name="address" size="50" maxlength="100">
             </td>
           </tr>
           <tr> 
@@ -51,7 +51,7 @@
               </div>
             </td>
             <td class="odd"> 
-              <input type="text" name="address2" size="50" maxlength="100" />
+              <input type="text" name="address2" size="50" maxlength="100">
             </td>
           </tr>		  
           <tr> 
@@ -61,7 +61,7 @@
               </div>
             </td>
             <td class="even"> 
-              <input type="text" name="city" value="" size="20" maxlength="100" />  <input type="text" name="state" value="" size="4" maxlength="10" />  <input type="text" name="zip" value="" size="10" maxlength="30" />
+              <input type="text" name="city" value="" size="20" maxlength="100">  <input type="text" name="state" value="" size="4" maxlength="10">  <input type="text" name="zip" value="" size="10" maxlength="30">
             </td>
           </tr>
           <tr> 
@@ -71,7 +71,7 @@
               </div>
             </td>
             <td class="odd"> 
-              <input type="text" name="country" size="50" maxlength="100" />
+              <input type="text" name="country" size="50" maxlength="100">
             </td>
           </tr>		  
           <tr> 
@@ -81,7 +81,7 @@
               </div>
             </td>
             <td class="odd"> 
-              <input type="text" name="phone" value="(916) " size="20" maxlength="100" />
+              <input type="text" name="phone" value="(916) " size="20" maxlength="100">
             </td>
           </tr>
           <tr> 
@@ -91,7 +91,7 @@
               </div>
             </td>
             <td class="odd"> 
-              <input type="text" name="fax" size="50" maxlength="100" />
+              <input type="text" name="fax" size="50" maxlength="100">
             </td>
           </tr>
           <tr> 
@@ -101,7 +101,7 @@
               </div>
             </td>
             <td class="odd"> 
-              <input type="text" name="email" size="50" maxlength="100" />
+              <input type="text" name="email" size="50" maxlength="100">
             </td>
           </tr>		  		  
           <tr> 
@@ -109,7 +109,7 @@
               <div align="left"><b><{$lang_siteurl}></b></div>
             </td>
             <td class="even"> 
-              <input type="text" name="url" size="50" maxlength="255" value="http://" />
+              <input type="text" name="url" size="50" maxlength="255" value="http://">
             </td>
           </tr>
           <tr> 
@@ -147,8 +147,8 @@
               </td>
           </tr>
         </table>
-      <br />
-      <div style="text-align: center;"><input type="submit" name="submit" class="button" value="<{$lang_submit}>" /> <input type="button" value="<{$lang_cancel}>" onclick="javascript:history.go(-1)" /></div>
+      <br>
+      <div style="text-align: center;"><input type="submit" name="submit" class="button" value="<{$lang_submit}>"> <input type="button" value="<{$lang_cancel}>" onclick="javascript:history.go(-1)"></div>
     </form>
   </td>
 </tr>

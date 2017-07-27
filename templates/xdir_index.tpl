@@ -1,4 +1,4 @@
-<br />
+<br>
 <table border="0" width="100%">
 	<tr>
 		<td align="left"><b>Business Directory</b></td>
@@ -6,24 +6,24 @@
 		</td>
 	</tr>
 </table>
-<hr />
+<hr>
 <!-- <table border="1" bordercolor="#666666" bgcolor="#FFFFCC" width="100%">
 	<tr>
 		<td align="center">
 			<table border="0">
 					<form name='search' id='search' action='/search.php' method='post' onsubmit='return xoopsFormValidate_search();'>
-					<input type='hidden' name='mids[]' value='12' />
+					<input type='hidden' name='mids[]' value='12'>
 				<tr>
 					<td><strong>Search for: </strong></td>
-					<td><input type='text' name='query' id='query' size='20' maxlength='255' value='' /></td>
+					<td><input type='text' name='query' id='query' size='20' maxlength='255' value=''></td>
 					<td><select  size='1' name='andor' id='andor'>
 					<option value='AND' selected='selected'>All Words</option>
 					<option value='OR'>Any Words</option>
 					<option value='exact'>Exact Match</option>
 					</select></td>
-					<td><input type='submit' class='formButton' name='submit'  id='submit' value='Search' /></td>
+					<td><input type='submit' class='formButton' name='submit'  id='submit' value='Search'></td>
 				</tr>
-					<input type='hidden' name='action' id='action' value='results' />
+					<input type='hidden' name='action' id='action' value='results'>
 					</form>
 			</table>
 		</td>
@@ -45,11 +45,11 @@
     <td valign="top">
 
     <{if $category.image != ""}>
-    <a href="<{$xoops_url}>/modules/xdirectory/viewcat.php?cid=<{$category.id}>"><img src="<{$category.image}>" height="50" border="0" alt="" /></a>
+    <a href="<{$xoops_url}>/modules/xdirectory/viewcat.php?cid=<{$category.id}>"><img src="<{$category.image}>" height="50" border="0" alt=""></a>
     <{/if}>
 
     </td>
-    <td valign="top" width="33%"><a href="<{$xoops_url}>/modules/xdirectory/viewcat.php?cid=<{$category.id}>"><b><{$category.title}></b></a> (<{$category.totallink}>)<br /><{$category.subcategories}></td>
+    <td valign="top" width="33%"><a href="<{$xoops_url}>/modules/xdirectory/viewcat.php?cid=<{$category.id}>"><b><{$category.title}></b></a> (<{$category.totallink}>)<br><{$category.subcategories}></td>
 
     <{if $category.count is div by 3}>
     </tr><tr>
@@ -61,10 +61,10 @@
   </tr>
 </table>
 
-<br /><br />
+<br><br>
 
 <div><{$lang_thereare}></div>
-<hr /><br />
+<hr><br>
 <{/if}>
 <{if $links != ""}>
 <h4><{$lang_latestlistings}></h4>
@@ -76,7 +76,7 @@
  <{section name=i loop=$category}>
   <{$link.category link=$category[i]}>
   <{section name=i loop=$links}>
-    <{include file="db:xdir_link.html" link=$links[i]}>
+    <{include file="db:xdir_link.tpl" link=$links[i]}>
   <{/section}>
  <{/section}>
   <!-- End new link loop -->
@@ -84,4 +84,4 @@
 </td></tr>
 </table>
 <{/if}>
-<{include file='db:system_notification_select.html'}>
+<{include file='db:system_notification_select.tpl'}>

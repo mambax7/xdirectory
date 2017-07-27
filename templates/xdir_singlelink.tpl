@@ -1,4 +1,4 @@
-<br /><br />
+<br><br>
 
 <p align='center'>
 <table width="97%" cellspacing="0" cellpadding="0" border="0">
@@ -9,7 +9,7 @@
     </td>
   </tr>
   <tr>
-    <td colspan="2"><hr />
+    <td colspan="2"><hr>
     </td>
   </tr>
 </table>  
@@ -23,12 +23,12 @@
   </table>
 </div>
 
-<br />
+<br>
 
 <table width="100%" cellspacing="0" cellpadding="10" border="0">
   <tr>
     <td align="center">
-    <{include file="db:xdir_listingfull.html" link=$link}>
+    <{include file="db:xdir_listingfull.tpl" link=$link}>
     </td>
   </tr>
 </table>
@@ -41,14 +41,14 @@
 <div style="margin:3px; padding: 3px;">
 <!-- start comments loop -->
 <{if $comment_mode == "flat"}>
-  <{include file="db:system_comments_flat.html"}>
+  <{include file="db:system_comments_flat.tpl"}>
 <{elseif $comment_mode == "thread"}>
-  <{include file="db:system_comments_thread.html"}>
+  <{include file="db:system_comments_thread.tpl"}>
 <{elseif $comment_mode == "nest"}>
-  <{include file="db:system_comments_nest.html"}>
+  <{include file="db:system_comments_nest.tpl"}>
 <{/if}>
 <!-- end comments loop -->
 </div>
-<{include file='db:system_notification_select.html'}>
+<{include file='db:system_notification_select.tpl'}>
 
 
