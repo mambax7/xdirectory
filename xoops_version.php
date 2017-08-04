@@ -46,6 +46,14 @@ $modversion['hasAdmin']   = 1;
 $modversion['adminindex'] = 'admin/index.php';
 $modversion['adminmenu']  = 'admin/menu.php';
 
+// ------------------- Help files ------------------- //
+$modversion['helpsection'] = array(
+    ['name' => _MI_XDIR_OVERVIEW, 'link' => 'page=help'],
+    ['name' => _MI_XDIR_DISCLAIMER, 'link' => 'page=disclaimer'],
+    ['name' => _MI_XDIR_LICENSE, 'link' => 'page=license'],
+    ['name' => _MI_XDIR_SUPPORT, 'link' => 'page=support'],
+);
+
 // Blocks
 $modversion['blocks'][1]['file']        = 'xdir_top.php';
 $modversion['blocks'][1]['name']        = _MI_XDIR_BNAME1;

@@ -153,7 +153,7 @@ function ImprAnn($lid)
     echo '<BR><BR>' . _CLA_DATE2 . " $date " . _CLA_DISPO . " $date2<BR><BR>";
 
     if ($photo) {
-        echo "<center><IMG SRC=\"images_ann/$photo\" BORDER=0></center>";
+        echo "<div class='center;'><IMG SRC=\"images_ann/$photo\" BORDER=0></div>";
     }
 
     echo '</TD>

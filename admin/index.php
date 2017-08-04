@@ -527,9 +527,9 @@ function listBrokenLinks()
     if ($totalbrokenlinks == 0) {
         echo _MD_NOBROKEN;
     } else {
-        echo '<center>
+        echo '<div class="center;">
 		' . _MD_IGNOREDESC . '<br>
-		' . _MD_DELETEDESC . '</center><br><br><br>';
+		' . _MD_DELETEDESC . '</div><br><br><br>';
         $colorswitch = 'dddddd';
         echo "<table align=\"center\" width=\"90%\">";
         echo '
