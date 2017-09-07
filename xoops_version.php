@@ -47,12 +47,12 @@ $modversion['adminindex'] = 'admin/index.php';
 $modversion['adminmenu']  = 'admin/menu.php';
 
 // ------------------- Help files ------------------- //
-$modversion['helpsection'] = array(
+$modversion['helpsection'] = [
     ['name' => _MI_XDIR_OVERVIEW, 'link' => 'page=help'],
     ['name' => _MI_XDIR_DISCLAIMER, 'link' => 'page=disclaimer'],
     ['name' => _MI_XDIR_LICENSE, 'link' => 'page=license'],
     ['name' => _MI_XDIR_SUPPORT, 'link' => 'page=support'],
-);
+];
 
 // Blocks
 $modversion['blocks'][1]['file']        = 'xdir_top.php';
@@ -89,7 +89,7 @@ $modversion['search']['func'] = 'xdir_search';
 $modversion['hasComments']             = 1;
 $modversion['comments']['itemName']    = 'lid';
 $modversion['comments']['pageName']    = 'singlelink.php';
-$modversion['comments']['extraParams'] = array('cid');
+$modversion['comments']['extraParams'] = ['cid'];
 // Comment callback functions
 $modversion['comments']['callbackFile']        = 'include/comment_functions.php';
 $modversion['comments']['callback']['approve'] = 'xdir_com_approve';
@@ -146,7 +146,7 @@ $modversion['config'][1]['default'] = 100;
 // options to be displayed in selection box
 // required and valid for 'select' or 'select_multi' formtype option only
 // language constants can be used for both array keys and values
-$modversion['config'][1]['options'] = array('5' => 5, '10' => 10, '50' => 50, '100' => 100, '200' => 200, '500' => 500, '1000' => 1000);
+$modversion['config'][1]['options'] = ['5' => 5, '10' => 10, '50' => 50, '100' => 100, '200' => 200, '500' => 500, '1000' => 1000];
 
 $modversion['config'][2]['name']        = 'newlinks';
 $modversion['config'][2]['title']       = '_MI_XDIR_NEWLINKS';
@@ -154,7 +154,7 @@ $modversion['config'][2]['description'] = '_MI_XDIR_NEWLINKSDSC';
 $modversion['config'][2]['formtype']    = 'select';
 $modversion['config'][2]['valuetype']   = 'int';
 $modversion['config'][2]['default']     = 10;
-$modversion['config'][2]['options']     = array('5' => 5, '10' => 10, '15' => 15, '20' => 20, '25' => 25, '30' => 30, '50' => 50);
+$modversion['config'][2]['options']     = ['5' => 5, '10' => 10, '15' => 15, '20' => 20, '25' => 25, '30' => 30, '50' => 50];
 
 $modversion['config'][3]['name']        = 'perpage';
 $modversion['config'][3]['title']       = '_MI_XDIR_PERPAGE';
@@ -162,7 +162,7 @@ $modversion['config'][3]['description'] = '_MI_XDIR_PERPAGEDSC';
 $modversion['config'][3]['formtype']    = 'select';
 $modversion['config'][3]['valuetype']   = 'int';
 $modversion['config'][3]['default']     = 10;
-$modversion['config'][3]['options']     = array('5' => 5, '10' => 10, '15' => 15, '20' => 20, '25' => 25, '30' => 30, '50' => 50);
+$modversion['config'][3]['options']     = ['5' => 5, '10' => 10, '15' => 15, '20' => 20, '25' => 25, '30' => 30, '50' => 50];
 
 $modversion['config'][4]['name']        = 'anonpost';
 $modversion['config'][4]['title']       = '_MI_XDIR_ANONPOST';
@@ -208,12 +208,12 @@ $modversion['notification']['lookup_func'] = 'xdir_notify_iteminfo';
 $modversion['notification']['category'][1]['name']           = 'global';
 $modversion['notification']['category'][1]['title']          = _MI_XDIR_GLOBAL_NOTIFY;
 $modversion['notification']['category'][1]['description']    = _MI_XDIR_GLOBAL_NOTIFYDSC;
-$modversion['notification']['category'][1]['subscribe_from'] = array('index.php', 'viewcat.php', 'singlelink.php');
+$modversion['notification']['category'][1]['subscribe_from'] = ['index.php', 'viewcat.php', 'singlelink.php'];
 
 $modversion['notification']['category'][2]['name']           = 'category';
 $modversion['notification']['category'][2]['title']          = _MI_XDIR_CATEGORY_NOTIFY;
 $modversion['notification']['category'][2]['description']    = _MI_XDIR_CATEGORY_NOTIFYDSC;
-$modversion['notification']['category'][2]['subscribe_from'] = array('viewcat.php', 'singlelink.php');
+$modversion['notification']['category'][2]['subscribe_from'] = ['viewcat.php', 'singlelink.php'];
 $modversion['notification']['category'][2]['item_name']      = 'cid';
 $modversion['notification']['category'][2]['allow_bookmark'] = 1;
 

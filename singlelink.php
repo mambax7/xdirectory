@@ -62,7 +62,7 @@ $path = substr($path, 1);
 $path = str_replace('/', " <img src='" . XOOPS_URL . "/modules/xdirectory/images/arrow.gif' board='0' alt=''> ", $path);
 $new  = newlinkgraphic($time, $status);
 $pop  = popgraphic($hits);
-$xoopsTpl->assign('link', array(
+$xoopsTpl->assign('link', [
     'id'           => $lid,
     'cid'          => $cid,
     'rating'       => number_format($rating, 2),
@@ -88,7 +88,7 @@ $xoopsTpl->assign('link', array(
     'premium'      => $premium,
     'mail_subject' => rawurlencode(sprintf(_MD_INTRESTLINK, $xoopsConfig['sitename'])),
     'mail_body'    => rawurlencode(sprintf(_MD_INTLINKFOUND, $xoopsConfig['sitename']) . ':  ' . XOOPS_URL . '/modules/xdirectory/singlelink.php?lid=' . $lid)
-));
+]);
 $xoopsTpl->assign('lang_description', _MD_DESCRIPTIONC);
 $xoopsTpl->assign('lang_lastupdate', _MD_LASTUPDATEC);
 $xoopsTpl->assign('lang_hits', _MD_HITSC);

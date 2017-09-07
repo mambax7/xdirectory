@@ -40,7 +40,6 @@ if (!empty($_POST['submit'])) {
     // Check if Rating is Null
     if ($rating == '--') {
         redirect_header('ratelink.php?cid=' . $cid . '&amp;lid=' . $lid . '', 4, _MD_NORATING);
-        exit();
     }
 
     // Check if Link POSTER is voting (UNLESS Anonymous users allowed to post)
@@ -49,7 +48,6 @@ if (!empty($_POST['submit'])) {
         while (list($ratinguserDB) = $xoopsDB->fetchRow($result)) {
             if ($ratinguserDB == $ratinguser) {
                 redirect_header('index.php', 4, _MD_CANTVOTEOWN);
-                exit();
             }
         }
 
@@ -58,7 +56,6 @@ if (!empty($_POST['submit'])) {
         while (list($ratinguserDB) = $xoopsDB->fetchRow($result)) {
             if ($ratinguserDB == $ratinguser) {
                 redirect_header('index.php', 4, _MD_VOTEONCE2);
-                exit();
             }
         }
     } else {
@@ -69,7 +66,6 @@ if (!empty($_POST['submit'])) {
         list($anonvotecount) = $xoopsDB->fetchRow($result);
         if ($anonvotecount > 0) {
             redirect_header('index.php', 4, _MD_VOTEONCE2);
-            exit();
         }
     }
     if ($rating > 10) {
@@ -86,7 +82,6 @@ if (!empty($_POST['submit'])) {
     updaterating($lid);
     $ratemessage = _MD_VOTEAPPRE . '<br>' . sprintf(_MD_THANKURATE, $xoopsConfig[sitename]);
     redirect_header('index.php', 2, $ratemessage);
-    exit();
 } else {
     $GLOBALS['xoopsOption']['template_main'] = 'xdir_ratelink.tpl';
     include XOOPS_ROOT_PATH . '/header.php';
@@ -94,7 +89,7 @@ if (!empty($_POST['submit'])) {
     $cid    = (int)$_GET['cid'];
     $result = $xoopsDB->query('select title from ' . $xoopsDB->prefix('xdir_links') . " where lid=$lid");
     list($title) = $xoopsDB->fetchRow($result);
-    $xoopsTpl->assign('link', array('id' => $lid, 'cid' => $cid, 'title' => $myts->htmlSpecialChars($title)));
+    $xoopsTpl->assign('link', ['id' => $lid, 'cid' => $cid, 'title' => $myts->htmlSpecialChars($title)]);
     $xoopsTpl->assign('lang_voteonce', _MD_VOTEONCE);
     $xoopsTpl->assign('lang_ratingscale', _MD_RATINGSCALE);
     $xoopsTpl->assign('lang_beobjective', _MD_BEOBJECTIVE);

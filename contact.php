@@ -48,7 +48,6 @@ if ($submit) {
         }
     }
     redirect_header('index.php', 1, _CLA_MESSEND);
-    exit();
 } else {
     include __DIR__ . '/header.php';
     include XOOPS_ROOT_PATH . '/header.php';

@@ -78,7 +78,6 @@ function MailAnn($lid, $yname, $ymail, $message, $email)
     mail($email, $subject, $message, "From: \"$yname\" <$ymail>\nX-Mailer: PHP/" . PHP_VERSION);
 
     redirect_header('index.php', 1, _CLA_ANNSEND);
-    exit();
 }
 
 function ImprAnn($lid)

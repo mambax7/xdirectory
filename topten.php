@@ -40,10 +40,10 @@ $xoopsTpl->assign('lang_category', _MD_CATEGORY);
 $xoopsTpl->assign('lang_hits', _MD_HITS);
 $xoopsTpl->assign('lang_rating', _MD_RATING);
 $xoopsTpl->assign('lang_vote', _MD_VOTE);
-$arr      = array();
+$arr      = [];
 $result   = $xoopsDB->query('SELECT cid, title FROM ' . $xoopsDB->prefix('xdir_cat') . ' WHERE pid=0');
 $e        = 0;
-$rankings = array();
+$rankings = [];
 while (list($cid, $ctitle) = $xoopsDB->fetchRow($result)) {
     $rankings[$e]['title'] = sprintf(_MD_TOP10, $myts->htmlSpecialChars($ctitle));
     $query                 = 'select lid, cid, title, hits, rating, votes from ' . $xoopsDB->prefix('xdir_links') . " where status>0 and (cid=$cid";
@@ -60,7 +60,7 @@ while (list($cid, $ctitle) = $xoopsDB->fetchRow($result)) {
         $catpath                 = $mytree->getPathFromId($lcid, 'title');
         $catpath                 = substr($catpath, 1);
         $catpath                 = str_replace('/', " <span class='fg2'>&raquo;</span> ", $catpath);
-        $rankings[$e]['links'][] = array(
+        $rankings[$e]['links'][] = [
             'id'       => $lid,
             'cid'      => $cid,
             'rank'     => $rank,
@@ -69,7 +69,7 @@ while (list($cid, $ctitle) = $xoopsDB->fetchRow($result)) {
             'hits'     => $hits,
             'rating'   => number_format($rating, 2),
             'votes'    => $votes
-        );
+        ];
         $rank++;
     }
     $e++;

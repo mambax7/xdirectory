@@ -35,7 +35,6 @@ if (!empty($_POST['submit'])) {
         list($count) = $xoopsDB->fetchRow($result);
         if ($count > 0) {
             redirect_header('index.php', 2, _MD_ALREADYREPORTED);
-            exit();
         }
     } else {
         // Check if the sender is trying to vote more than once.
@@ -43,18 +42,16 @@ if (!empty($_POST['submit'])) {
         list($count) = $xoopsDB->fetchRow($result);
         if ($count > 0) {
             redirect_header('index.php', 2, _MD_ALREADYREPORTED);
-            exit();
         }
     }
     $newid = $xoopsDB->genId($xoopsDB->prefix('xdir_broken') . '_reportid_seq');
     $sql   = sprintf("INSERT INTO %s (reportid, lid, sender, ip) VALUES (%u, %u, %u, '%s')", $xoopsDB->prefix('xdir_broken'), $newid, $lid, $sender, $ip);
     $xoopsDB->query($sql) or exit();
-    $tags                      = array();
+    $tags                      = [];
     $tags['BROKENREPORTS_URL'] = XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname') . '/admin/index.php?op=listBrokenLinks';
     $notificationHandler       = xoops_getHandler('notification');
     $notificationHandler->triggerEvent('global', 0, 'link_broken', $tags);
     redirect_header('index.php', 2, _MD_THANKSFORINFO);
-    exit();
 } else {
     $GLOBALS['xoopsOption']['template_main'] = 'xdir_brokenlink.tpl';
     include XOOPS_ROOT_PATH . '/header.php';

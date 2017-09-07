@@ -28,7 +28,6 @@ if (!empty($_POST['submit'])) {
     $eh = new ErrorHandler; //ErrorHandler object
     if (empty($xoopsUser)) {
         redirect_header(XOOPS_URL . '/user.php', 2, _MD_MUSTREGFIRST);
-        exit();
     } else {
         $user = $xoopsUser->getVar('uid');
     }
@@ -55,20 +54,37 @@ if (!empty($_POST['submit'])) {
     $title       = $myts->makeTboxData4Save($_POST['title']);
     $description = $myts->makeTareaData4Save($_POST['description']);
     $newid       = $xoopsDB->genId($xoopsDB->prefix('xdir_mod') . '_requestid_seq');
-    $sql         = sprintf("INSERT INTO %s (requestid, lid, cid, title, address, address2, city, state, zip, country, phone, fax, email, url, logourl, description, modifysubmitter) VALUES (%u, %u, %u, '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', %u)",
-                           $xoopsDB->prefix('xdir_mod'), $newid, $lid, $cid, $title, $address, $address2, $city, $state, $zip, $country, $phone, $fax, $email, $url, $logourl, $description, $user);
+    $sql         = sprintf(
+        "INSERT INTO %s (requestid, lid, cid, title, address, address2, city, state, zip, country, phone, fax, email, url, logourl, description, modifysubmitter) VALUES (%u, %u, %u, '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', %u)",
+                           $xoopsDB->prefix('xdir_mod'),
+        $newid,
+        $lid,
+        $cid,
+        $title,
+        $address,
+        $address2,
+        $city,
+        $state,
+        $zip,
+        $country,
+        $phone,
+        $fax,
+        $email,
+        $url,
+        $logourl,
+        $description,
+        $user
+    );
     $xoopsDB->query($sql) || $eh->show('0013');
-    $tags                      = array();
+    $tags                      = [];
     $tags['MODIFYREPORTS_URL'] = XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname') . '/admin/index.php?op=listModReq';
     $notificationHandler       = xoops_getHandler('notification');
     $notificationHandler->triggerEvent('global', 0, 'link_modify', $tags);
     redirect_header('index.php', 2, _MD_THANKSFORINFO);
-    exit();
 } else {
     $lid = (int)$_GET['lid'];
     if (empty($xoopsUser)) {
         redirect_header(XOOPS_URL . '/user.php', 2, _MD_MUSTREGFIRST);
-        exit();
     }
     $GLOBALS['xoopsOption']['template_main'] = 'xdir_modlink.tpl';
     include XOOPS_ROOT_PATH . '/header.php';
@@ -77,7 +93,7 @@ if (!empty($_POST['submit'])) {
     list($cid, $title, $address, $address2, $city, $state, $zip, $country, $phone, $fax, $email, $url, $logourl) = $xoopsDB->fetchRow($result);
     $result2 = $xoopsDB->query('SELECT description FROM ' . $xoopsDB->prefix('xdir_text') . " WHERE lid=$lid");
     list($description) = $xoopsDB->fetchRow($result2);
-    $xoopsTpl->assign('link', array(
+    $xoopsTpl->assign('link', [
         'id'          => $lid,
         'rating'      => number_format($rating, 2),
         'title'       => $myts->htmlSpecialChars($title),
@@ -97,7 +113,7 @@ if (!empty($_POST['submit'])) {
         'adminlink'   => $adminlink,
         'hits'        => $hits,
         'votes'       => $votestring
-    ));
+    ]);
     $xoopsTpl->assign('lang_linkid', _MD_LINKID);
     $xoopsTpl->assign('lang_sitetitle', _MD_SITETITLE);
     $xoopsTpl->assign('lang_siteaddress', _MD_BUSADDRESS);

@@ -162,7 +162,7 @@ function getTotalItems($sel_id, $status = '')
 {
     global $xoopsDB, $mytree;
     $count = 0;
-    $arr   = array();
+    $arr   = [];
     $query = 'SELECT count(*) FROM ' . $xoopsDB->prefix('xdir_links') . ' WHERE cid=' . $sel_id . '';
     if ($status != '') {
         $query .= " and status>=$status";

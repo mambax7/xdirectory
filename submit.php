@@ -29,7 +29,6 @@ $mytree = new XoopsTree($xoopsDB->prefix('xdir_cat'), 'cid', 'pid');
 
 if (empty($xoopsUser) and !$xoopsModuleConfig['anonpost']) {
     redirect_header(XOOPS_URL . '/user.php', 2, _MD_MUSTREGFIRST);
-    exit();
 }
 
 if (!empty($_POST['submit'])) {
@@ -80,8 +79,32 @@ if (!empty($_POST['submit'])) {
     } else {
         $status = 0;
     }
-    $sql = sprintf("INSERT INTO %s (lid, cid, title, address, address2, city, state, zip, country, phone, fax, email, url, logourl, submitter, STATUS, DATE, hits, rating, votes, comments, premium) VALUES (%u, %u, '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', %u, %u, %u, %u, %u, %u, %u, %u)",
-                   $xoopsDB->prefix('xdir_links'), $newid, $cid, $title, $address, $address2, $city, $state, $zip, $country, $phone, $fax, $email, $url, $logourl, $submitter, $status, $date, 0, 0, 0, 0, $premium);
+    $sql = sprintf(
+        "INSERT INTO %s (lid, cid, title, address, address2, city, state, zip, country, phone, fax, email, url, logourl, submitter, STATUS, DATE, hits, rating, votes, comments, premium) VALUES (%u, %u, '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', %u, %u, %u, %u, %u, %u, %u, %u)",
+                   $xoopsDB->prefix('xdir_links'),
+        $newid,
+        $cid,
+        $title,
+        $address,
+        $address2,
+        $city,
+        $state,
+        $zip,
+        $country,
+        $phone,
+        $fax,
+        $email,
+        $url,
+        $logourl,
+        $submitter,
+        $status,
+        $date,
+        0,
+        0,
+        0,
+        0,
+        $premium
+    );
     $xoopsDB->query($sql) || $eh->show('0013');
     if ($newid == 0) {
         $newid = $xoopsDB->getInsertId();
@@ -91,7 +114,7 @@ if (!empty($_POST['submit'])) {
     // RMV-NEW
     // Notify of new link (anywhere) and new link in category.
     $notificationHandler   = xoops_getHandler('notification');
-    $tags                  = array();
+    $tags                  = [];
     $tags['LINK_NAME']     = $title;
     $tags['LINK_URL']      = XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname') . '/singlelink.php?cid=' . $cid . '&lid=' . $newid;
     $sql                   = 'SELECT title FROM ' . $xoopsDB->prefix('xdir_cat') . ' WHERE cid=' . $cid;

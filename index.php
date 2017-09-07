@@ -34,7 +34,7 @@ while ($myrow = $xoopsDB->fetchArray($result)) {
     }
     $totallink = getTotalItems($myrow['cid'], 1);
     // get child category objects
-    $arr           = array();
+    $arr           = [];
     $arr           = $mytree->getFirstChild($myrow['cid'], 'title');
     $space         = 0;
     $chcount       = 0;
@@ -52,14 +52,14 @@ while ($myrow = $xoopsDB->fetchArray($result)) {
         $space++;
         $chcount++;
     }
-    $xoopsTpl->append('categories', array(
+    $xoopsTpl->append('categories', [
         'image'         => $imgurl,
         'id'            => $myrow['cid'],
         'title'         => $myts->htmlSpecialChars($myrow['title']),
         'subcategories' => $subcategories,
         'totallink'     => $totallink,
         'count'         => $count
-    ));
+    ]);
     $count++;
 }
 list($numrows) = $xoopsDB->fetchRow($xoopsDB->query('SELECT count(*) FROM ' . $xoopsDB->prefix('xdir_links') . ' WHERE status>0'));
@@ -117,7 +117,7 @@ while (list($lid, $cid, $ltitle, $address, $address2, $city, $state, $zip, $coun
     $path = str_replace('/', ' - ', $path);
     $new  = newlinkgraphic($time, $status);
     $pop  = popgraphic($hits);
-    $xoopsTpl->append('links', array(
+    $xoopsTpl->append('links', [
         'id'           => $lid,
         'cid'          => $cid,
         'url'          => $url,
@@ -143,6 +143,6 @@ while (list($lid, $cid, $ltitle, $address, $address2, $city, $state, $zip, $coun
         'premium'      => $premium,
         'mail_subject' => rawurlencode(sprintf(_MD_INTRESTLINK, $xoopsConfig['sitename'])),
         'mail_body'    => rawurlencode(sprintf(_MD_INTLINKFOUND, $xoopsConfig['sitename']) . ':  ' . XOOPS_URL . '/modules/xdirectory/singlelink.php?cid=' . $cid . '&lid=' . $lid)
-    ));
+    ]);
 }
 include XOOPS_ROOT_PATH . '/footer.php';

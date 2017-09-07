@@ -47,12 +47,12 @@ $pathstring .= $mytree->getNicePathFromId($cid, 'title', 'viewcat.php?op=');
 $xoopsTpl->assign('category_path', $pathstring);
 $xoopsTpl->assign('category_id', $cid);
 // get child category objects
-$arr = array();
+$arr = [];
 $arr = $mytree->getFirstChild($cid, 'title');
 if (count($arr) > 0) {
     $scount = 1;
     foreach ($arr as $ele) {
-        $sub_arr         = array();
+        $sub_arr         = [];
         $sub_arr         = $mytree->getFirstChild($ele['cid'], 'title');
         $space           = 0;
         $chcount         = 0;
@@ -70,13 +70,13 @@ if (count($arr) > 0) {
             $space++;
             $chcount++;
         }
-        $xoopsTpl->append('subcategories', array(
+        $xoopsTpl->append('subcategories', [
             'title'           => $myts->htmlSpecialChars($ele['title']),
             'id'              => $ele['cid'],
             'infercategories' => $infercategories,
             'totallinks'      => getTotalItems($ele['cid'], 1),
             'count'           => $scount
-        ));
+        ]);
         $scount++;
     }
 }
@@ -165,7 +165,7 @@ if ($numrows > 0) {
         $path = str_replace('/', " <img src='" . XOOPS_URL . "/modules/xdirectory/images/arrow.gif' board='0' alt=''> ", $path);
         $new  = newlinkgraphic($time, $status);
         $pop  = popgraphic($hits);
-        $xoopsTpl->append('links', array(
+        $xoopsTpl->append('links', [
             'id'           => $lid,
             'cid'          => $cid,
             'url'          => $url,
@@ -191,7 +191,7 @@ if ($numrows > 0) {
             'votes'        => $votestring,
             'mail_subject' => rawurlencode(sprintf(_MD_INTRESTLINK, $xoopsConfig['sitename'])),
             'mail_body'    => rawurlencode(sprintf(_MD_INTLINKFOUND, $xoopsConfig['sitename']) . ':  ' . XOOPS_URL . '/modules/xdirectory/singlelink.php?cid=' . $cid . '&lid=' . $lid)
-        ));
+        ]);
     }
     $orderby = convertorderbyout($orderby);
     //Calculates how many pages exist.  Which page one should be on, etc...

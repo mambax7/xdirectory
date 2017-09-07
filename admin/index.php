@@ -511,7 +511,6 @@ function delVote()
     $xoopsDB->query($sql) || $eh->show('0013');
     updaterating($lid);
     redirect_header('index.php', 1, _MD_VOTEDELETED);
-    exit();
 }
 
 function listBrokenLinks()
@@ -594,7 +593,6 @@ function delBrokenLinks()
     $sql = sprintf('DELETE FROM %s WHERE lid = %u', $xoopsDB->prefix('xdir_links'), $lid);
     $xoopsDB->query($sql) || $eh->show('0013');
     redirect_header('index.php', 1, _MD_LINKDELETED);
-    exit();
 }
 
 function ignoreBrokenLinks()
@@ -603,7 +601,6 @@ function ignoreBrokenLinks()
     $sql = sprintf('DELETE FROM %s WHERE lid = %u', $xoopsDB->prefix('xdir_broken'), $_GET['lid']);
     $xoopsDB->query($sql) || $eh->show('0013');
     redirect_header('index.php', 1, _MD_BROKENDELETED);
-    exit();
 }
 
 function listModReq()
@@ -617,7 +614,7 @@ function listModReq()
     echo '<h4>' . _MD_USERMODREQ . " ($totalmodrequests)</h4><br>";
     if ($totalmodrequests > 0) {
         echo '<table width=95%><tr><td>';
-        $lookup_lid = array();
+        $lookup_lid = [];
         while (list($requestid, $lid, $cid, $title, $address, $address2, $city, $state, $zip, $country, $phone, $fax, $email, $url, $logourl, $premium, $description, $modifysubmitter) = $xoopsDB->fetchRow($result)) {
             $lookup_lid[$requestid] = $lid;
             $result2                = $xoopsDB->query('select cid, title, address, address2, city, state, zip, country, phone, fax, email, url, logourl, submitter from ' . $xoopsDB->prefix('xdir_links') . " where lid=$lid");
@@ -771,8 +768,27 @@ function changeModReq()
         $url         = addslashes($url);
         $logourl     = addslashes($logourl);
         $description = addslashes($description);
-        $sql         = sprintf("UPDATE %s SET cid = %u, title = '%s', address = '%s', address2 = '%s', city = '%s', state = '%s', zip = '%s', country = '%s', phone = '%s', fax = '%s', email = '%s', url = '%s', logourl = '%s', STATUS = %u, DATE = %u, premium = %u WHERE lid = %u",
-                               $xoopsDB->prefix('xdir_links'), $cid, $title, $address, $address2, $city, $state, $zip, $country, $phone, $fax, $email, $url, $logourl, 2, time(), $premium, $lid);
+        $sql         = sprintf(
+            "UPDATE %s SET cid = %u, title = '%s', address = '%s', address2 = '%s', city = '%s', state = '%s', zip = '%s', country = '%s', phone = '%s', fax = '%s', email = '%s', url = '%s', logourl = '%s', STATUS = %u, DATE = %u, premium = %u WHERE lid = %u",
+                               $xoopsDB->prefix('xdir_links'),
+            $cid,
+            $title,
+            $address,
+            $address2,
+            $city,
+            $state,
+            $zip,
+            $country,
+            $phone,
+            $fax,
+            $email,
+            $url,
+            $logourl,
+            2,
+            time(),
+            $premium,
+            $lid
+        );
         $xoopsDB->query($sql) || $eh->show('0013');
         $sql = sprintf("UPDATE %s SET description = '%s' WHERE lid = %u", $xoopsDB->prefix('xdir_text'), $description, $lid);
         $xoopsDB->query($sql) || $eh->show('0013');
@@ -780,7 +796,6 @@ function changeModReq()
         $xoopsDB->query($sql) || $eh->show('0013');
     }
     redirect_header('index.php', 1, _MD_DBUPDATED);
-    exit();
 }
 
 function ignoreModReq()
@@ -789,7 +804,6 @@ function ignoreModReq()
     $sql = sprintf('DELETE FROM %s WHERE requestid = %u', $xoopsDB->prefix('xdir_mod'), $_GET['requestid']);
     $xoopsDB->query($sql) || $eh->show('0013');
     redirect_header('index.php', 1, _MD_MODREQDELETED);
-    exit();
 }
 
 function modLinkS()
@@ -823,7 +837,6 @@ function modLinkS()
                     . '') || $eh->show('0013');
     $xoopsDB->query('update ' . $xoopsDB->prefix('xdir_text') . " set description='$description' where lid=" . $_POST['lid'] . '') || $eh->show('0013');
     redirect_header('index.php', 1, _MD_DBUPDATED);
-    exit();
 }
 
 function delLink()
@@ -841,7 +854,6 @@ function delLink()
     xoops_notification_deletebyitem($xoopsModule->getVar('mid'), 'link', $_GET['lid']);
 
     redirect_header('index.php', 1, _MD_LINKDELETED);
-    exit();
 }
 
 function modCat()
@@ -933,10 +945,9 @@ function delCat()
         $xoopsDB->query($sql) || $eh->show('0013');
         xoops_notification_deletebyitem($xoopsModule->getVar('mid'), 'category', $cid);
         redirect_header('index.php', 1, _MD_CATDELETED);
-        exit();
     } else {
         xoops_cp_header();
-        xoops_confirm(array('op' => 'delCat', 'cid' => $cid, 'ok' => 1), 'index.php', _MD_WARNING);
+        xoops_confirm(['op' => 'delCat', 'cid' => $cid, 'ok' => 1], 'index.php', _MD_WARNING);
         xoops_cp_footer();
     }
 }
@@ -962,7 +973,6 @@ function addCat()
     $title = $myts->makeTboxData4Save($_POST['title']);
     if (empty($title)) {
         redirect_header('index.php', 2, _MD_ERRORTITLE);
-        exit();
     }
     if ($_POST['imgurl'] || ($_POST['imgurl'] != '')) {
         //		$imgurl = $myts->formatURL($_POST["imgurl"]);
@@ -976,7 +986,7 @@ function addCat()
         $newid = $xoopsDB->getInsertId();
     }
     global $xoopsModule;
-    $tags                  = array();
+    $tags                  = [];
     $tags['CATEGORY_NAME'] = $title;
     $tags['CATEGORY_URL']  = XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname') . '/viewcat.php?cid=' . $newid;
     $notificationHandler   = xoops_getHandler('notification');
@@ -1040,15 +1050,39 @@ function addLink()
         $cid = 0;
     }
     $newid = $xoopsDB->genId($xoopsDB->prefix('xdir_links') . '_lid_seq');
-    $sql   = sprintf("INSERT INTO %s (lid, cid, title, address, address2, city, state, zip, country, phone, fax, email, url, logourl, submitter, STATUS, DATE, hits, rating, votes, comments, premium) VALUES (%u, %u, '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', %u, %u, %u, %u, %u, %u, %u, %u)",
-                     $xoopsDB->prefix('xdir_links'), $newid, $cid, $title, $address, $address2, $city, $state, $zip, $country, $phone, $fax, $email, $url, $logourl, $submitter, 1, time(), 0, 0, 0, 0, $premium);
+    $sql   = sprintf(
+        "INSERT INTO %s (lid, cid, title, address, address2, city, state, zip, country, phone, fax, email, url, logourl, submitter, STATUS, DATE, hits, rating, votes, comments, premium) VALUES (%u, %u, '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', %u, %u, %u, %u, %u, %u, %u, %u)",
+                     $xoopsDB->prefix('xdir_links'),
+        $newid,
+        $cid,
+        $title,
+        $address,
+        $address2,
+        $city,
+        $state,
+        $zip,
+        $country,
+        $phone,
+        $fax,
+        $email,
+        $url,
+        $logourl,
+        $submitter,
+        1,
+        time(),
+        0,
+        0,
+        0,
+        0,
+        $premium
+    );
     $xoopsDB->query($sql) || $eh->show('0013');
     if ($newid == 0) {
         $newid = $xoopsDB->getInsertId();
     }
     $sql = sprintf("INSERT INTO %s (lid, description) VALUES (%u, '%s')", $xoopsDB->prefix('xdir_text'), $newid, $description);
     $xoopsDB->query($sql) || $eh->show('0013');
-    $tags                  = array();
+    $tags                  = [];
     $tags['LINK_NAME']     = $title;
     $tags['LINK_URL']      = XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname') . '/singlelink.php?cid=' . $cid . '&lid=' . $newid;
     $sql                   = 'SELECT title FROM ' . $xoopsDB->prefix('xdir_cat') . ' WHERE cid=' . $cid;
@@ -1111,7 +1145,7 @@ function approve()
     $query = 'update ' . $xoopsDB->prefix('xdir_text') . " set description='$description' where lid=" . $lid . '';
     $xoopsDB->query($query) || $eh->show('0013');
     global $xoopsModule;
-    $tags                  = array();
+    $tags                  = [];
     $tags['LINK_NAME']     = $title;
     $tags['LINK_URL']      = XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname') . '/singlelink.php?cid=' . $cid . '&lid=' . $lid;
     $sql                   = 'SELECT title FROM ' . $xoopsDB->prefix('xdir_cat') . ' WHERE cid=' . $cid;
