@@ -81,7 +81,7 @@ if (count($arr) > 0) {
     }
 }
 
-if ($xoopsModuleConfig['useshots'] == 1) {
+if (1 == $xoopsModuleConfig['useshots']) {
     $xoopsTpl->assign('shotwidth', $xoopsModuleConfig['shotwidth']);
     $xoopsTpl->assign('tablewidth', $xoopsModuleConfig['shotwidth'] + 10);
     $xoopsTpl->assign('show_screenshot', true);
@@ -155,7 +155,7 @@ if ($numrows > 0) {
         } else {
             $adminlink = '';
         }
-        if ($votes == 1) {
+        if (1 == $votes) {
             $votestring = _MD_ONEVOTE;
         } else {
             $votestring = sprintf(_MD_NUMVOTES, $votes);
@@ -197,7 +197,7 @@ if ($numrows > 0) {
     //Calculates how many pages exist.  Which page one should be on, etc...
     $linkpages = ceil($numrows / $show);
     //Page Numbering
-    if ($linkpages != 1 && $linkpages != 0) {
+    if (1 != $linkpages && 0 != $linkpages) {
         $cid  = (int)$_GET['cid'];
         $prev = $min - $show;
         if ($prev >= 0) {

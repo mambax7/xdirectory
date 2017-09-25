@@ -34,7 +34,7 @@ if (!empty($_POST['submit'])) {
     $lid = (int)$_POST['lid'];
 
     // Check if Title exist
-    if ($_POST['title'] == '') {
+    if ('' == $_POST['title']) {
         $eh->show('1001');
     }
 
@@ -44,7 +44,7 @@ if (!empty($_POST['submit'])) {
     //}
 
     // Check if Description exist
-    if ($_POST['description'] == '') {
+    if ('' == $_POST['description']) {
         $eh->show('1008');
     }
 

@@ -385,17 +385,17 @@ function modLink()
     echo '</td></tr>';
     echo "<tr><td align=\"right\" nowrap>" . _MD_PREMIUM . "</td><td>\n";
     echo "<select size=\"1\" name=\"premium\">";
-    if ($premium == 0) {
+    if (0 == $premium) {
         echo "<option value=\"0\">0 none</option>";
-    } elseif ($premium == 1) {
+    } elseif (1 == $premium) {
         echo "<option value=\"1\">1 WebLink</option>";
-    } elseif ($premium == 2) {
+    } elseif (2 == $premium) {
         echo "<option value=\"2\">2 Highlight</option>";
-    } elseif ($premium == 3) {
+    } elseif (3 == $premium) {
         echo "<option value=\"3\">3 Highlight Plus WebLink</option>";
-    } elseif ($premium == 4) {
+    } elseif (4 == $premium) {
         echo "<option value=\"4\">4 Page Sponsor</option>";
-    } elseif ($premium == 5) {
+    } elseif (5 == $premium) {
         echo "<option value=\"5\">5 Page Sponsor Plus WebLink</option>";
     }
     echo "<option value=\"0\">------</option>";
@@ -433,7 +433,7 @@ function modLink()
     printf(_MD_USERTOTALVOTES, $votes);
     echo "</b><br><br></td></tr>\n";
     echo '<tr><td><b>' . _MD_USER . '  </b></td><td><b>' . _MD_IP . '  </b></td><td><b>' . _MD_RATING . '  </b></td><td><b>' . _MD_USERAVG . '  </b></td><td><b>' . _MD_TOTALRATE . '  </b></td><td><b>' . _MD_DATE . "  </b></td><td align=\"center\"><b>" . _MD_DELETE . "</b></td></tr>\n";
-    if ($votes == 0) {
+    if (0 == $votes) {
         echo "<tr><td align=\"center\" colspan=\"7\">" . _MD_NOREGVOTES . "<br></td></tr>\n";
     }
     $x           = 0;
@@ -466,7 +466,7 @@ function modLink()
              . myTextForm("index.php?op=delVote&lid=$lid&rid=$ratingid", 'X')
              . "</b></td></tr>\n";
         $x++;
-        if ($colorswitch == 'dddddd') {
+        if ('dddddd' == $colorswitch) {
             $colorswitch = 'ffffff';
         } else {
             $colorswitch = 'dddddd';
@@ -479,7 +479,7 @@ function modLink()
     printf(_MD_ANONTOTALVOTES, $votes);
     echo "</b><br><br></td></tr>\n";
     echo '<tr><td colspan=2><b>' . _MD_IP . '  </b></td><td colspan=3><b>' . _MD_RATING . '  </b></td><td><b>' . _MD_DATE . "  </b></b></td><td align=\"center\"><b>" . _MD_DELETE . '</b></td><br></tr>';
-    if ($votes == 0) {
+    if (0 == $votes) {
         echo "<tr><td colspan=\"7\" align=\"center\">" . _MD_NOUNREGVOTES . '<br></td></tr>';
     }
     $x           = 0;
@@ -490,7 +490,7 @@ function modLink()
              . myTextForm("index.php?op=delVote&lid=$lid&rid=$ratingid", 'X')
              . '</b></td></tr>';
         $x++;
-        if ($colorswitch == 'dddddd') {
+        if ('dddddd' == $colorswitch) {
             $colorswitch = 'ffffff';
         } else {
             $colorswitch = 'dddddd';
@@ -523,7 +523,7 @@ function listBrokenLinks()
     echo "<table width='100%' border='0' cellspacing='1' class='outer'>" . "<tr class=\"odd\"><td>";
     echo '<h4>' . _MD_BROKENREPORTS . " ($totalbrokenlinks)</h4><br>";
 
-    if ($totalbrokenlinks == 0) {
+    if (0 == $totalbrokenlinks) {
         echo _MD_NOBROKEN;
     } else {
         echo '<div class="center;">
@@ -542,7 +542,7 @@ function listBrokenLinks()
         </tr>';
         while (list($reportid, $lid, $sender, $ip) = $xoopsDB->fetchRow($result)) {
             $result2 = $xoopsDB->query('select title, url, submitter from ' . $xoopsDB->prefix('xdir_links') . " where lid=$lid");
-            if ($sender != 0) {
+            if (0 != $sender) {
                 $result3 = $xoopsDB->query('select uname, email from ' . $xoopsDB->prefix('users') . " where uid=$sender");
                 list($uname, $email) = $xoopsDB->fetchRow($result3);
             }
@@ -551,13 +551,13 @@ function listBrokenLinks()
             $result4 = $xoopsDB->query('select uname, email from ' . $xoopsDB->prefix('users') . " where uid='$ownerid'");
             list($owner, $owneremail) = $xoopsDB->fetchRow($result4);
             echo "<tr><td bgcolor=$colorswitch><a href=$url target='_blank'>$title</a></td>";
-            if ($email == '') {
+            if ('' == $email) {
                 echo "<td bgcolor=\"" . $colorswitch . "\">" . $sender . ' (' . $ip . ')';
             } else {
                 echo "<td bgcolor=\"" . $colorswitch . "\"><a href=\"mailto:" . $email . "\">" . $uname . '</a> (' . $ip . ')';
             }
             echo '</td>';
-            if ($owneremail == '') {
+            if ('' == $owneremail) {
                 echo "<td bgcolor=\"" . $colorswitch . "\">" . $owner . '';
             } else {
                 echo "<td bgcolor=\"" . $colorswitch . "\"><a href=\"mailto:" . $owneremail . "\">" . $owner . '</a>';
@@ -571,7 +571,7 @@ function listBrokenLinks()
             echo myTextForm("index.php?op=delBrokenLinks&lid=$lid", 'X');
             echo "</td></tr>\n";
 
-            if ($colorswitch == '#dddddd') {
+            if ('#dddddd' == $colorswitch) {
                 $colorswitch = '#ffffff';
             } else {
                 $colorswitch = '#dddddd';
@@ -648,7 +648,7 @@ function listModReq()
             //			$origurl = urldecode($origurl);
             //			$origlogourl = urldecode($origlogourl);
             $origdescription = $myts->displayTarea($origdescription);
-            if ($owner == '') {
+            if ('' == $owner) {
                 $owner = 'administration';
             }
             echo '<table border=1 bordercolor=black cellpadding=5 cellspacing=0 align=center width=450><tr><td>
@@ -695,7 +695,7 @@ function listModReq()
     	    <tr><td valign=top width=45%><small>" . _MD_SITEURL . '<br>' . $url . '</small></td></tr>
 	     	<tr><td valign=top width=45%><small>' . _MD_CATEGORYC . "$cidtitle</small></td></tr>
 	     	<tr><td valign=top width=45%><small>" . _MD_SHOTIMAGE . '</small>';
-            if ($xoopsModuleConfig['useshots'] == 1 && !empty($logourl)) {
+            if (1 == $xoopsModuleConfig['useshots'] && !empty($logourl)) {
                 echo "<img src=\"" . XOOPS_URL . '/modules/xdirectory/images/shots/' . $logourl . "\" width=\"" . $xoopsModuleConfig['shotwidth'] . "\" alt=\"/\">";
             } else {
                 echo ' ';
@@ -704,12 +704,12 @@ function listModReq()
     	   	</table></td></tr></table>
     		<table align=center width=450>
     	  	<tr>';
-            if ($submitteremail == '') {
+            if ('' == $submitteremail) {
                 echo '<td align=left><small>' . _MD_SUBMITTER . "$submitter</small></td>";
             } else {
                 echo '<td align=left><small>' . _MD_SUBMITTER . '<a href=mailto:' . $submitteremail . '>' . $submitter . '</a></small></td>';
             }
-            if ($owneremail == '') {
+            if ('' == $owneremail) {
                 echo '<td align=center><small>' . _MD_OWNER . '' . $owner . '</small></td>';
             } else {
                 echo '<td align=center><small>' . _MD_OWNER . '<a href=mailto:' . $owneremail . '>' . $owner . '</a></small></td>';
@@ -810,7 +810,7 @@ function modLinkS()
 {
     global $xoopsDB, $_POST, $myts, $eh;
     $cid = $_POST['cid'];
-    if ($_POST['title'] || ($_POST['title'] != '')) {
+    if ($_POST['title'] || ('' != $_POST['title'])) {
         //		$url = $myts->formatURL($_POST["url"]);
         //		$url = urlencode($url);
         $title = $myts->makeTboxData4Save($_POST['title']);
@@ -891,7 +891,7 @@ function modCatS()
     if (empty($title)) {
         redirect_header('index.php', 2, _MD_ERRORTITLE);
     }
-    if ($_POST['imgurl'] || ($_POST['imgurl'] != '')) {
+    if ($_POST['imgurl'] || ('' != $_POST['imgurl'])) {
         $imgurl = $myts->makeTboxData4Save($_POST['imgurl']);
     }
     $xoopsDB->query('update ' . $xoopsDB->prefix('xdir_cat') . " set pid=$pid, title='$title', imgurl='$imgurl' where cid=$cid") || $eh->show('0013');
@@ -903,7 +903,7 @@ function delCat()
     global $xoopsDB, $_GET, $_POST, $eh, $mytree, $xoopsModule;
     $cid = isset($_POST['cid']) ? (int)$_POST['cid'] : (int)$_GET['cid'];
     $ok  = isset($_POST['ok']) ? (int)$_POST['ok'] : 0;
-    if ($ok == 1) {
+    if (1 == $ok) {
         //get all subcategories under the specified category
         $arr    = $mytree->getAllChildId($cid);
         $dcount = count($arr);
@@ -974,7 +974,7 @@ function addCat()
     if (empty($title)) {
         redirect_header('index.php', 2, _MD_ERRORTITLE);
     }
-    if ($_POST['imgurl'] || ($_POST['imgurl'] != '')) {
+    if ($_POST['imgurl'] || ('' != $_POST['imgurl'])) {
         //		$imgurl = $myts->formatURL($_POST["imgurl"]);
         //		$imgurl = urlencode($imgurl);
         $imgurl = $myts->makeTboxData4Save($_POST['imgurl']);
@@ -982,7 +982,7 @@ function addCat()
     $newid = $xoopsDB->genId($xoopsDB->prefix('xdir_cat') . '_cid_seq');
     $sql   = sprintf("INSERT INTO %s (cid, pid, title, imgurl) VALUES (%u, %u, '%s', '%s')", $xoopsDB->prefix('xdir_cat'), $newid, $pid, $title, $imgurl);
     $xoopsDB->query($sql) || $eh->show('0013');
-    if ($newid == 0) {
+    if (0 == $newid) {
         $newid = $xoopsDB->getInsertId();
     }
     global $xoopsModule;
@@ -997,7 +997,7 @@ function addCat()
 function addLink()
 {
     global $xoopsConfig, $xoopsDB, $myts, $xoopsUser, $xoopsModule, $eh, $_POST;
-    if ($_POST['title'] || ($_POST['title'] != '')) {
+    if ($_POST['title'] || ('' != $_POST['title'])) {
         //	$url=$myts->formatURL($_POST["url"]);
         //		$url = urlencode($url);
         $title = $myts->makeTboxData4Save($_POST['title']);
@@ -1026,7 +1026,7 @@ function addLink()
         $error    = 1;
     }
     // Check if Title exist
-    if ($title == '') {
+    if ('' == $title) {
         $errormsg .= "<h4 style='color: #ff0000'>";
         $errormsg .= _MD_ERRORTITLE . '</h4>';
         $error    = 1;
@@ -1038,7 +1038,7 @@ function addLink()
     //	$errormsg .= _MD_ERRORDESC."</h4>";
     //	$error =1;
     //}
-    if ($error == 1) {
+    if (1 == $error) {
         xoops_cp_header();
         echo $errormsg;
         xoops_cp_footer();
@@ -1077,7 +1077,7 @@ function addLink()
         $premium
     );
     $xoopsDB->query($sql) || $eh->show('0013');
-    if ($newid == 0) {
+    if (0 == $newid) {
         $newid = $xoopsDB->getInsertId();
     }
     $sql = sprintf("INSERT INTO %s (lid, description) VALUES (%u, '%s')", $xoopsDB->prefix('xdir_text'), $newid, $description);
@@ -1116,7 +1116,7 @@ function approve()
         $cid = 0;
     }
     $description = $_POST['description'];
-    if ($_POST['url'] || ($_POST['url'] != '')) {
+    if ($_POST['url'] || ('' != $_POST['url'])) {
         //		$url=$myts->formatURL($_POST["url"]);
         //		$url = urlencode($url);
         $url = $myts->makeTboxData4Save($_POST['url']);

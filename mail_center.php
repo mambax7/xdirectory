@@ -134,7 +134,7 @@ function ImprAnn($lid)
     <TR>
       <TD><DIV STYLE=\"text-align:justify;\">$description</DIV><P>";
 
-    if ($price && $ynprice == 1) {
+    if ($price && 1 == $ynprice) {
         echo '<B>' . _CLA_PRICE2 . "</B> $price $monnaie - $typeprix<BR>";
     }
 

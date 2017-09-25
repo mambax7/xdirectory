@@ -44,7 +44,7 @@ if (!empty($_POST['submit'])) {
     //}
 
     // Check if Title exist
-    if ($_POST['title'] == '') {
+    if ('' == $_POST['title']) {
         $eh->show('1001');
     }
 
@@ -73,7 +73,7 @@ if (!empty($_POST['submit'])) {
     $description = $myts->makeTareaData4Save($_POST['message']);
     $date        = time();
     $newid       = $xoopsDB->genId($xoopsDB->prefix('xdir_links') . '_lid_seq');
-    if ($xoopsModuleConfig['autoapprove'] == 1) {
+    if (1 == $xoopsModuleConfig['autoapprove']) {
         // RMV-FIXME: shouldn't this be 'APPROVE' or something (also in mydl)?
         $status = $xoopsModuleConfig['autoapprove'];
     } else {
@@ -106,7 +106,7 @@ if (!empty($_POST['submit'])) {
         $premium
     );
     $xoopsDB->query($sql) || $eh->show('0013');
-    if ($newid == 0) {
+    if (0 == $newid) {
         $newid = $xoopsDB->getInsertId();
     }
     $sql = sprintf("INSERT INTO %s (lid, description) VALUES (%u, '%s')", $xoopsDB->prefix('xdir_text'), $newid, $description);
@@ -122,7 +122,7 @@ if (!empty($_POST['submit'])) {
     $row                   = $xoopsDB->fetchArray($result);
     $tags['CATEGORY_NAME'] = $row['title'];
     $tags['CATEGORY_URL']  = XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname') . '/viewcat.php?cid=' . $cid;
-    if ($xoopsModuleConfig['autoapprove'] == 1) {
+    if (1 == $xoopsModuleConfig['autoapprove']) {
         $notificationHandler->triggerEvent('global', 0, 'new_link', $tags);
         $notificationHandler->triggerEvent('category', $cid, 'new_link', $tags);
         redirect_header('index.php', 2, _MD_RECEIVED . '<br>' . _MD_ISAPPROVED . '');

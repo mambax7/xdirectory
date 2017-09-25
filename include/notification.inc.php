@@ -22,7 +22,7 @@ function xdir_notify_iteminfo($category, $item_id)
 {
     global $xoopsModule, $xoopsModuleConfig, $xoopsConfig;
 
-    if (empty($xoopsModule) || $xoopsModule->getVar('dirname') != 'xdirectory') {
+    if (empty($xoopsModule) || 'xdirectory' != $xoopsModule->getVar('dirname')) {
         $moduleHandler = xoops_getHandler('module');
         $module        = $moduleHandler->getByDirname('xdirectory');
         $configHandler = xoops_getHandler('config');
@@ -34,7 +34,7 @@ function xdir_notify_iteminfo($category, $item_id)
 
     //require_once XOOPS_ROOT_PATH . '/modules/' . $module->getVar('dirname') . '/language/' . $xoopsConfig['language'] . '/main.php';
 
-    if ($category == 'global') {
+    if ('global' == $category) {
         $item['name'] = '';
         $item['url']  = '';
 
@@ -42,7 +42,7 @@ function xdir_notify_iteminfo($category, $item_id)
     }
 
     global $xoopsDB;
-    if ($category == 'category') {
+    if ('category' == $category) {
         // Assume we have a valid category id
         $sql          = 'SELECT title FROM ' . $xoopsDB->prefix('xdir_cat') . ' WHERE cid = ' . $item_id;
         $result       = $xoopsDB->query($sql); // TODO: error check
@@ -53,7 +53,7 @@ function xdir_notify_iteminfo($category, $item_id)
         return $item;
     }
 
-    if ($category == 'link') {
+    if ('link' == $category) {
         // Assume we have a valid link id
         $sql          = 'SELECT cid,title FROM ' . $xoopsDB->prefix('xdir_links') . ' WHERE lid = ' . $item_id;
         $result       = $xoopsDB->query($sql); // TODO: error check

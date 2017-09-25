@@ -27,7 +27,7 @@ $xoopsDB->queryF($sql);
 $result = $xoopsDB->query('select url from ' . $xoopsDB->prefix('xdir_links') . " where lid=$lid and status>0");
 list($url) = $xoopsDB->fetchRow($result);
 
-if ($xoopsModuleConfig['frame'] != '') {
+if ('' != $xoopsModuleConfig['frame']) {
     header('Content-Type:text/html; charset=' . _CHARSET);
     header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
     header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');

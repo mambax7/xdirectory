@@ -45,13 +45,13 @@ if ($xoopsUser && $xoopsUser->isAdmin($xoopsModule->mid())) {
 } else {
     $adminlink = '';
 }
-if ($votes == 1) {
+if (1 == $votes) {
     $votestring = _MD_ONEVOTE;
 } else {
     $votestring = sprintf(_MD_NUMVOTES, $votes);
 }
 
-if ($xoopsModuleConfig['useshots'] == 1) {
+if (1 == $xoopsModuleConfig['useshots']) {
     $xoopsTpl->assign('shotwidth', $xoopsModuleConfig['shotwidth']);
     $xoopsTpl->assign('tablewidth', $xoopsModuleConfig['shotwidth'] + 10);
     $xoopsTpl->assign('show_screenshot', true);

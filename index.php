@@ -29,7 +29,7 @@ $result = $xoopsDB->query('SELECT cid, title, imgurl FROM ' . $xoopsDB->prefix('
 $count = 1;
 while ($myrow = $xoopsDB->fetchArray($result)) {
     $imgurl = '';
-    if ($myrow['imgurl'] && $myrow['imgurl'] != 'http://') {
+    if ($myrow['imgurl'] && 'http://' != $myrow['imgurl']) {
         $imgurl = $myts->htmlSpecialChars($myrow['imgurl']);
     }
     $totallink = getTotalItems($myrow['cid'], 1);
@@ -65,7 +65,7 @@ while ($myrow = $xoopsDB->fetchArray($result)) {
 list($numrows) = $xoopsDB->fetchRow($xoopsDB->query('SELECT count(*) FROM ' . $xoopsDB->prefix('xdir_links') . ' WHERE status>0'));
 $xoopsTpl->assign('lang_thereare', sprintf(_MD_THEREARE, $numrows));
 
-if ($xoopsModuleConfig['useshots'] == 1) {
+if (1 == $xoopsModuleConfig['useshots']) {
     $xoopsTpl->assign('shotwidth', $xoopsModuleConfig['shotwidth']);
     $xoopsTpl->assign('tablewidth', $xoopsModuleConfig['shotwidth'] + 10);
     $xoopsTpl->assign('show_screenshot', true);
@@ -107,7 +107,7 @@ while (list($lid, $cid, $ltitle, $address, $address2, $city, $state, $zip, $coun
     } else {
         $adminlink = '';
     }
-    if ($votes == 1) {
+    if (1 == $votes) {
         $votestring = _MD_ONEVOTE;
     } else {
         $votestring = sprintf(_MD_NUMVOTES, $votes);

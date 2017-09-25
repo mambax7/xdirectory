@@ -46,9 +46,9 @@ function b_xdir_top_show($options)
         $link['id']    = $myrow['lid'];
         $link['cid']   = $myrow['cid'];
         $link['title'] = $title;
-        if ($options[0] == 'date') {
+        if ('date' == $options[0]) {
             $link['date'] = formatTimestamp($myrow['date'], 's');
-        } elseif ($options[0] == 'hits') {
+        } elseif ('hits' == $options[0]) {
             $link['hits'] = $myrow['hits'];
         }
         $block['links'][] = $link;
@@ -61,7 +61,7 @@ function b_xdir_top_edit($options)
 {
     $form = '' . _MB_XDIR_DISP . '&nbsp;';
     $form .= "<input type='hidden' name='options[]' value='";
-    if ($options[0] == 'date') {
+    if ('date' == $options[0]) {
         $form .= "date'";
     } else {
         $form .= "hits'";

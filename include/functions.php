@@ -24,9 +24,9 @@ function newlinkgraphic($time, $status)
     $new       = '';
     $startdate = (time() - (86400 * $count));
     if ($startdate < $time) {
-        if ($status == 1) {
+        if (1 == $status) {
             $new = "&nbsp;<img src=\"" . XOOPS_URL . "/modules/xdirectory/images/newred.gif\" alt=\"" . _MD_NEWTHISWEEK . "\">";
-        } elseif ($status == 2) {
+        } elseif (2 == $status) {
             $new = "&nbsp;<img src=\"" . XOOPS_URL . "/modules/xdirectory/images/update.gif\" alt=\"" . _MD_UPTHISWEEK . "\">";
         }
     }
@@ -80,28 +80,28 @@ function convertorderbyin($orderby)
 
 function convertorderbytrans($orderby)
 {
-    if ($orderby == 'hits ASC') {
+    if ('hits ASC' == $orderby) {
         $orderbyTrans = '' . _MD_POPULARITYLTOM . '';
     }
-    if ($orderby == 'hits DESC') {
+    if ('hits DESC' == $orderby) {
         $orderbyTrans = '' . _MD_POPULARITYMTOL . '';
     }
-    if ($orderby == 'title ASC') {
+    if ('title ASC' == $orderby) {
         $orderbyTrans = '' . _MD_TITLEATOZ . '';
     }
-    if ($orderby == 'title DESC') {
+    if ('title DESC' == $orderby) {
         $orderbyTrans = '' . _MD_TITLEZTOA . '';
     }
-    if ($orderby == 'date ASC') {
+    if ('date ASC' == $orderby) {
         $orderbyTrans = '' . _MD_DATEOLD . '';
     }
-    if ($orderby == 'date DESC') {
+    if ('date DESC' == $orderby) {
         $orderbyTrans = '' . _MD_DATENEW . '';
     }
-    if ($orderby == 'rating ASC') {
+    if ('rating ASC' == $orderby) {
         $orderbyTrans = '' . _MD_RATINGLTOH . '';
     }
-    if ($orderby == 'rating DESC') {
+    if ('rating DESC' == $orderby) {
         $orderbyTrans = '' . _MD_RATINGHTOL . '';
     }
 
@@ -110,28 +110,28 @@ function convertorderbytrans($orderby)
 
 function convertorderbyout($orderby)
 {
-    if ($orderby == 'title ASC') {
+    if ('title ASC' == $orderby) {
         $orderby = 'titleA';
     }
-    if ($orderby == 'date ASC') {
+    if ('date ASC' == $orderby) {
         $orderby = 'dateA';
     }
-    if ($orderby == 'hits ASC') {
+    if ('hits ASC' == $orderby) {
         $orderby = 'hitsA';
     }
-    if ($orderby == 'rating ASC') {
+    if ('rating ASC' == $orderby) {
         $orderby = 'ratingA';
     }
-    if ($orderby == 'title DESC') {
+    if ('title DESC' == $orderby) {
         $orderby = 'titleD';
     }
-    if ($orderby == 'date DESC') {
+    if ('date DESC' == $orderby) {
         $orderby = 'dateD';
     }
-    if ($orderby == 'hits DESC') {
+    if ('hits DESC' == $orderby) {
         $orderby = 'hitsD';
     }
-    if ($orderby == 'rating DESC') {
+    if ('rating DESC' == $orderby) {
         $orderby = 'ratingD';
     }
 
@@ -164,7 +164,7 @@ function getTotalItems($sel_id, $status = '')
     $count = 0;
     $arr   = [];
     $query = 'SELECT count(*) FROM ' . $xoopsDB->prefix('xdir_links') . ' WHERE cid=' . $sel_id . '';
-    if ($status != '') {
+    if ('' != $status) {
         $query .= " and status>=$status";
     }
     $result = $xoopsDB->query($query);
@@ -174,7 +174,7 @@ function getTotalItems($sel_id, $status = '')
     $size  = count($arr);
     for ($i = 0; $i < $size; $i++) {
         $query2 = 'SELECT count(*) FROM ' . $xoopsDB->prefix('xdir_links') . ' WHERE cid=' . $arr[$i] . '';
-        if ($status != '') {
+        if ('' != $status) {
             $query2 .= " and status>=$status";
         }
         $result2 = $xoopsDB->query($query2);

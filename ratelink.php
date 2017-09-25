@@ -38,12 +38,12 @@ if (!empty($_POST['submit'])) {
     $rating       = (int)$_POST['rating'];
 
     // Check if Rating is Null
-    if ($rating == '--') {
+    if ('--' == $rating) {
         redirect_header('ratelink.php?cid=' . $cid . '&amp;lid=' . $lid . '', 4, _MD_NORATING);
     }
 
     // Check if Link POSTER is voting (UNLESS Anonymous users allowed to post)
-    if ($ratinguser != 0) {
+    if (0 != $ratinguser) {
         $result = $xoopsDB->query('select submitter from ' . $xoopsDB->prefix('xdir_links') . " where lid=$lid");
         while (list($ratinguserDB) = $xoopsDB->fetchRow($result)) {
             if ($ratinguserDB == $ratinguser) {

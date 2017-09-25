@@ -29,7 +29,7 @@ if (!empty($_POST['submit'])) {
     }
     $lid = (int)$_POST['lid'];
     $ip  = getenv('REMOTE_ADDR');
-    if ($sender != 0) {
+    if (0 != $sender) {
         // Check if REG user is trying to report twice.
         $result = $xoopsDB->query('SELECT COUNT(*) FROM ' . $xoopsDB->prefix('xdir_broken') . ' WHERE lid=' . $lid . ' AND sender=' . $sender . '');
         list($count) = $xoopsDB->fetchRow($result);

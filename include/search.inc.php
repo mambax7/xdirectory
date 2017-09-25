@@ -22,7 +22,7 @@ function xdir_search($queryarray, $andor, $limit, $offset, $userid)
 {
     global $xoopsDB;
     $sql = 'SELECT l.lid,l.cid,l.title,l.submitter,l.date,c.title,t.description FROM ' . $xoopsDB->prefix('xdir_links') . ' l LEFT JOIN ' . $xoopsDB->prefix('xdir_cat') . ' c ON c.cid=l.cid LEFT JOIN ' . $xoopsDB->prefix('xdir_text') . ' t ON t.lid=l.lid WHERE status>0';
-    if ($userid != 0) {
+    if (0 != $userid) {
         $sql .= ' AND l.submitter=' . $userid . ' ';
     }
     // because count() returns 1 even if a supplied variable
